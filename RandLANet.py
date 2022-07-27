@@ -97,7 +97,7 @@ class Network:
         c_proto.gpu_options.allow_growth = True
         self.sess = tf.Session(config=c_proto)
         self.merged = tf.summary.merge_all()
-        self.train_writer = tf.summary.FileWriter(config.train_sum_dir, self.sess.graph)
+        # self.train_writer = tf.summary.FileWriter(config.train_sum_dir, self.sess.graph)
         self.sess.run(tf.global_variables_initializer())
 
     def inference(self, inputs, is_training):
@@ -158,7 +158,7 @@ class Network:
                        self.labels,
                        self.accuracy]
                 _, _, summary, l_out, probs, labels, acc = self.sess.run(ops, {self.is_training: True})
-                self.train_writer.add_summary(summary, self.training_step)
+                # self.train_writer.add_summary(summary, self.training_step)
                 t_end = time.time()
                 if self.training_step % 50 == 0:
                     message = 'Step {:08d} L_out={:5.3f} Acc={:4.2f} ''---{:8.2f} ms/batch'
