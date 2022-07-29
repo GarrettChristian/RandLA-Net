@@ -1,3 +1,46 @@
+# RandLA-Net
+
+Fork for Semantic LiDAR Fuzzer
+
+---
+
+
+## Build Docker Image
+
+```
+cd to RandLA-Net directory
+docker build . -t randla-net_image
+
+# Compilation for these operators requires the GPU
+
+docker run \
+--name randla-net \
+--gpus all \
+--user "$(id -u)" \
+--ipc=host \
+--mount type=bind,source=PATH_TO_RAND,target=PATH_TO_RAND \
+randla-net_image \
+bash -c "cd RandLA-Net && sh compile_op.sh"
+
+
+docker container stop randla-net && docker container rm randla-net
+
+```
+
+
+## Run Docker Image
+- See Sample Run in runRandDocker.sh or in the docker runner of semLidarFuzzer
+
+
+## Remove Docker Container
+```
+docker container stop randla-net && docker container rm randla-net
+```
+
+---
+
+
+
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/191111236/semantic-segmentation-on-semantic3d)](https://paperswithcode.com/sota/semantic-segmentation-on-semantic3d?p=191111236)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/191111236/3d-semantic-segmentation-on-semantickitti)](https://paperswithcode.com/sota/3d-semantic-segmentation-on-semantickitti?p=191111236)
 [![License CC BY-NC-SA 4.0](https://img.shields.io/badge/license-CC4.0-blue.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode)
